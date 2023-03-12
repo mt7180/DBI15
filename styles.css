@@ -1,0 +1,169 @@
+body {
+    font-family: Arial, Helvetica, sans-serif, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 3vh;
+    /* -webkit-tap-highlight-color: rgba(0, 0, 0, 0); */
+}
+
+.container {
+    position: relative;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* background-color: #420861; */
+    background-color: white;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    height: 95vh;
+}
+
+.item {
+    
+    text-align: center;
+    justify-content: center;
+    /* background-image: linear-gradient(#fdeae3, #fdeae3), linear-gradient(#f8c966,#f8c966), linear-gradient(#f1d6c3,#f1d6c3), linear-gradient(90deg, transparent 20px, #f9e5c7 0, #f9e5c7 calc(100% - 20px), transparent 0); */
+    /* background-size: 100% 50px, 50px 10px, 60px 10px, auto 50px; */
+    /* height: 50px; */
+    color: white;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    /* background-color: blue; */
+    gap: 1.5rem;
+    overflow:hidden;
+}
+/* 
+.item >div {
+    
+} */
+
+.red {
+    background-color: tomato;
+    font-size: 12rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.orange {
+    background-color: #F0AC3F;
+    flex-grow: 4;
+    font-size: 200%;
+    padding: 0.5rem;
+    
+}
+
+.purple {
+    background-color: #BB52D4;
+    font-size: 300%;
+    padding: 1.5rem;
+}
+
+.turquise {
+    background-color: #55BBCB;
+    flex-grow: 1;
+    text-align: center;
+    width: 50%;
+    
+}
+
+.center {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+button {
+    color: white;
+    cursor: pointer;
+    text-align: center;
+}
+
+button.pointer {
+    cursor: pointer;
+  }
+/* button:hover, button:active {
+    background-color: #4CAF50;
+    color: white;
+} */
+@media (hover: hover) {
+    button:hover {
+       /*On devices that support hover, add a hover effect to the button.*/
+       background-color: #4CAF50;
+    }
+    
+    
+ }
+
+.round_button {
+    position: absolute;
+	bottom: 0;
+    /* box-shadow: 7px 3px 3px rgb(54, 52, 52); */
+    /* margin: auto; */
+    height: 7vh;
+    /* padding-top:7%; */
+    width: 7vh;
+    border-radius: 50%;
+    border: 0.9vh solid white;
+    background-color: darkgrey;
+    /* vertical-align: middle; */
+    /* padding: 2vh; */
+    font-size: 1.5rem;
+    
+}
+
+.special_button{
+    border: 0px;
+}
+
+.counter_div {
+    width:90%;
+    height:90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding:0;
+}
+
+
+.counter_innerdiv {
+    display: flex;
+    /* position: static; */
+    /* height: 50%; */
+    /* height:70%; */
+    margin-top: 3%;
+    padding: 1.5vh 1.5vw;
+    /* padding-right: 37%; */
+    /* transform: translate(50% 50%); */
+    /* margin-top: 0.5rem; */
+    /* margin-left: auto; */
+    /* border: 7px solid white; */
+    background: #dde1e7;
+    border-radius: 2vh;
+    box-shadow: inset -1vh -1vh 1.5vh rgba(255,255,255,0.45), inset 1vh 1vh 1.5vh rgba(94,104,121,0.3);
+    /* top: 50%;
+    left: 50%; */
+    /* vertical-align: middle; */
+    color:green;
+    text-align: center;
+    font-size: 100% ;
+}
+
+.glow {
+    border: .15em solid white;
+    box-shadow: inset 0 0 0 .2em tomato,
+              inset 0 0 1em .3em tomato,
+              inset 1em 1em .4em black(.6),
+              0 0 0 .2em tomato,
+              0 0 1em .3em tomato,
+              1em 1em .4em black(.6)
+
+}
+
+#clock{
+    /* color: green; */
+    
+    font-size: 100%;
+    text-align: center;
+    /* text-shadow: 2px 2px 8px green; */
+}

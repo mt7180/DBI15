@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ChatApp</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+
+        <script>
+            var localCounter = 0;
+            var timeVisible = false;
+            function incrementLocalCounter() {
+                let localCounterField = document.getElementById("localCounterField");
+                // let button1 = document.getElementById("button1");
+                //button1.style.backgroundColor = button1.className = "turquise";
+                localCounter += 1;
+                localCounterField.innerHTML= localCounter;
+            }
+
+            function getTime() {
+                let clockField = document.getElementById("clockField");
+                if(!timeVisible){
+                    clockField.className = "counter_innerdiv";
+                    clockField.innerText = '12:22';
+                    timeVisible = true;
+                } else{
+                    clockField.className = "";
+                    clockField.innerText = "";
+                    timeVisible = false;
+                }
+            }
+
+        </script>
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="item" style="height:15%">
+                <button class=" turquise special_button" onclick="getTime()">
+                    <span class="material-symbols-outlined" style="font-size: 12vh;">
+                        schedule
+                    </span>
+                </button>
+                <div class="orange item" >
+                    <div  id="clockField" style="display: flex; margin:auto;justify-content: center; align-items: center; text-align: center;">
+                    <span>click the clock</span>
+                    </div>
+                </div>
+            </div>
+            <div class="item red" style="height:50%">
+                <span>DBI15</span>
+            </div>
+            <div class="item" style="height:35%;">
+                <div class="item orange " id="first_div" >
+                    <div class="counter_div">
+                        <p style=" display: flex; margin:0">Local </p>
+                        <p style=" display: flex; margin:0">Counter</p>
+                        <div class="counter_innerdiv" id="localCounterField"> 0
+                        </div>
+                    </div>
+                    <button class="round_button"  onclick="incrementLocalCounter()">
+                        <b>+</b>  
+                    </button>
+                </div>
+                <div class="item purple center" id="second_div">
+                    <span >
+                        DBI15
+                    </span>
+                </div>
+                <div class="item orange " id="third_div" onclick="window.location.href = './Aufgabe3.html';">
+                    <div class="counter_div">
+                        <p style=" display: flex; margin:0">Global</p>
+                        <p style=" display: flex; margin:0">Counter</p>
+                        <div class="counter_innerdiv">0
+                        </div>
+                    </div>
+                    <button class="round_button"  onclick="window.location.href = './index.html';">
+            
+                        <b>+</b>
+                         
+                     </button>
+                </div>
+              
+          </div>
+          
+    
+    </body>
+</html>
