@@ -1,1 +1,5 @@
-<?php echo date('H:i:s') ?>
+<?php 
+    date_default_timezone_set('Europe/Berlin');
+    echo date('H:i:s') 
+    
+?>
