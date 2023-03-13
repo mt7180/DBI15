@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ChatApp</title>
+        <link rel="stylesheet" href="/styles.css">
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+
+        <script>
+            const MESSAGE_TYPES = {
+                TIME: 0,
+                GLOBAL_COUNTER: 1
+            }
+            const PORT = 8080;
+            var localCounter = 0;
+            var timeVisible = false;
+            const socket = new WebSocket(`ws://localhost:${PORT}`); // ${document.location.hostname}
+            //const socket = new WebSocket('ws://localhost:1338');
+            socket.onopen = () => {
+                console.log('Websocket connection established')
+            }
+
+            function getTimeFromServer() {
+                //event.preventDefault();
+                const message = {
+                    type: MESSAGE_TYPES.TIME,
+                    data: ''
+                };
+                console.log('Client: ' + message.type);
+                socket.send(JSON.stringify(message));
+            }
+
+            socket.onmessage = (event) => {
+                const message = JSON.parse(event.data);
+                switch (message.type) {
+                    case MESSAGE_TYPES.ON_CONNECT:
+                        handleConnectMessage(message.data);
+                        break;
+                    case MESSAGE_TYPES.TIME:
+                        handleTimeResponse(message.data);
+                        break;
+                    case MESSAGE_TYPES.GLOBAL_COUNTER:
+                        handleCounterBroadcast(message.data);
+                        break;
+                    default:
+                        console.error(`Unrecognized message type 2: ${message.type}`);
+                }
+            };
+            
+            function incrementLocalCounter() {
+                let localCounterField = document.getElementById("localCounterField");
+                localCounter += 1;
+                localCounterField.innerHTML= localCounter;
+            }
+
+            function incrementGlobalCounter() {
+                socket.send(JSON.stringify({
+                    type: MESSAGE_TYPES.GLOBAL_COUNTER,
+                    data: ''
+                }));
+            }
+
+            function handleCounterBroadcast(serverMessage) {
+                let globalCounterField = document.getElementById("globalCounterField");
+                globalCounterField.innerHTML= serverMessage;
+            }
+
+            function handleTimeResponse(serverMessage) {
+                let clockField = document.getElementById("clockField");
+                clockField.className = "counter_innerdiv";
+                clockField.innerText = serverMessage;
+                timeVisible = true;
+                
+            }
+
+            function handleTimeClick(){
+                if(!timeVisible){
+                    getTimeFromServer();
+                }else{
+                    let clockField = document.getElementById("clockField");
+                    clockField.className = "";
+                    clockField.innerText = "";
+                    timeVisible = false;
+                }
+            }
+        </script>
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="item" style="height:15%">
+                <button class=" turquise special_button" onclick="handleTimeClick()">
+                    <span class="material-symbols-outlined" style="font-size: 5rem;">
+                        schedule
+                    </span>
+                </button>
+                <div class="orange item" >
+                    <div  id="clockField" style="display: flex; margin:auto;justify-content: center; align-items: center; text-align: center;">
+                    <span>click the clock</span>
+                    </div>
+                </div>
+            </div>
+            <div class="item red" style="height:50%">
+                <span>DBI15</span>
+            </div>
+            <div class="item" style="height:35%;">
+                <div class="item orange " id="first_div" >
+                    <div class="counter_div">
+                        <p style=" display: flex; margin:0">Local </p>
+                        <p style=" display: flex; margin:0">Counter</p>
+                        <div class="counter_innerdiv" id="localCounterField"> 0
+                        </div>
+                    </div>
+                    <button class="round_button"  onclick="incrementLocalCounter()">
+                        <b>+</b>  
+                    </button>
+                </div>
+                <div class="item purple center" id="second_div">
+                    <span >
+                        DBI15
+                    </span>
+                </div>
+                <div class="item orange " id="third_div">
+                    <div class="counter_div">
+                        <p style=" display: flex; margin:0">Global</p>
+                        <p style=" display: flex; margin:0">Counter</p>
+                        <div class="counter_innerdiv" id="globalCounterField">0
+                        </div>
+                    </div>
+                    <button class="round_button"  onclick="incrementGlobalCounter()">
+            
+                        <b>+</b>
+                         
+                     </button>
+                </div>
+              
+          </div>
+          
+    
+    </body>
+</html>
